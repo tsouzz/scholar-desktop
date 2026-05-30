@@ -1,4 +1,4 @@
-package org.ifsp.scholardesktop;
+package org.ifsp.scholardesktop.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
