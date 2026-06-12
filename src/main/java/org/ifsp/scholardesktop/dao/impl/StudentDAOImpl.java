@@ -38,7 +38,7 @@ public class StudentDAOImpl implements IStudentDAO {
 
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RuntimeException("Turma não encontrada para o aluno: " + e.getMessage());
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir aluno: " + e.getMessage());
         }
     }

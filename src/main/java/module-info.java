@@ -12,6 +12,9 @@ module org.ifsp.scholardesktop {
     // dotenv
     requires io.github.cdimascio.dotenv.java;
 
+    // hash
+    requires jbcrypt;
+
     // Opens para o JavaFX injetar nos controllers via FXML
     opens org.ifsp.scholardesktop to javafx.fxml;
     opens org.ifsp.scholardesktop.controller to javafx.fxml;
