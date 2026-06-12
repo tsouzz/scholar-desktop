@@ -8,16 +8,14 @@ public class ClassGroup {
     private Module module;
     private Teacher teacher;
 
-    public ClassGroup(String name, int number, Module module, Teacher teacher) {
-        this.name = name;
+    public ClassGroup(int number, Module module, Teacher teacher) {
         this.number = number;
         this.module = module;
         this.teacher = teacher;
     }
 
-    public ClassGroup(int id, String name, int number, Module module, Teacher teacher) {
+    public ClassGroup(int id, int number, Module module, Teacher teacher) {
         this.id = id;
-        this.name = name;
         this.number = number;
         this.module = module;
         this.teacher = teacher;
@@ -25,6 +23,10 @@ public class ClassGroup {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

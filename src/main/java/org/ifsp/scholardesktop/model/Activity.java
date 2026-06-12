@@ -1,7 +1,6 @@
 package org.ifsp.scholardesktop.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Activity {
 
@@ -19,8 +18,19 @@ public class Activity {
         this.student = student;
     }
 
+    public Activity(ActivityType activityType, double grade, LocalDate registrationDate, Student student) {
+        this.activityType = activityType;
+        this.grade = grade;
+        this.registrationDate = registrationDate;
+        this.student = student;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ActivityType getActivityType() {
