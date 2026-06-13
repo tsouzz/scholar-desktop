@@ -3,7 +3,9 @@ package org.ifsp.scholardesktop.service;
 import org.ifsp.scholardesktop.dao.impl.TeacherDAOImpl;
 import org.ifsp.scholardesktop.dao.interfaces.ISchoolDAO;
 import org.ifsp.scholardesktop.dao.interfaces.ITeacherDAO;
+import org.ifsp.scholardesktop.exception.InvalidCredentialsException;
 import org.ifsp.scholardesktop.exception.InvalidOperationException;
+import org.ifsp.scholardesktop.model.School;
 import org.ifsp.scholardesktop.model.Teacher;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -25,9 +27,27 @@ public class AuthService {
             String schoolName
     ) throws InvalidOperationException {
 
+        validatePasswordStrength(rawPassword);
+        validatePasswordMatch(rawPassword, confirmPassword);
 
+        String hashedPassword = hashPassword(rawPassword);
 
-        return null;
+        School school = schoolDAO.findByName(schoolName);
+        if (school == null) {
+            school = new School(schoolName);
+            schoolDAO.insert(school);
+        }
+
+        Teacher teacher = new Teacher(
+                teacherName,
+                email,
+                hashedPassword,
+                school
+        );
+
+        teacherDAO.insert(teacher);
+
+        return teacher;
     }
 
     public Teacher login(
@@ -35,7 +55,13 @@ public class AuthService {
             String rawPassword
     ) throws InvalidOperationException {
 
-        return null;
+        Teacher teacher = teacherDAO.findByEmail(email);
+
+        if (teacher == null || !checkPassword(rawPassword, teacher.getPasswordHash())) {
+            throw new InvalidCredentialsException("credenciais inválidas");
+        }
+
+        return teacher;
     }
 
     private void validatePasswordMatch(

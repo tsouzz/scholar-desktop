@@ -2,8 +2,6 @@ package org.ifsp.scholardesktop.dao.impl;
 
 import org.ifsp.scholardesktop.dao.DBConnection;
 import org.ifsp.scholardesktop.dao.interfaces.ITeacherDAO;
-import org.ifsp.scholardesktop.model.ClassGroup;
-import org.ifsp.scholardesktop.model.Module;
 import org.ifsp.scholardesktop.model.School;
 import org.ifsp.scholardesktop.model.Teacher;
 
