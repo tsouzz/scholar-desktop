@@ -17,7 +17,7 @@ public class ActivityDAOImpl implements IActivityDAO {
         String sql = "INSERT INTO activities (student_id, type, grade, registration_date) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             stmt.setInt(1, activity.getStudent().getId());
             stmt.setString(2, activity.getActivityType().name());

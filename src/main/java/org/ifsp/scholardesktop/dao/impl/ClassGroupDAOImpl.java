@@ -18,7 +18,7 @@ public class ClassGroupDAOImpl implements IClassGroupDAO {
         String sql = "INSERT INTO class_groups (number, module, teacher_id) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             stmt.setInt(1, classGroup.getNumber());
             stmt.setString(2, classGroup.getModule().name());

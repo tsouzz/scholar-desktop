@@ -1,6 +1,5 @@
 package org.ifsp.scholardesktop.service;
 
-import org.ifsp.scholardesktop.dao.impl.TeacherDAOImpl;
 import org.ifsp.scholardesktop.dao.interfaces.ISchoolDAO;
 import org.ifsp.scholardesktop.dao.interfaces.ITeacherDAO;
 import org.ifsp.scholardesktop.exception.InvalidCredentialsException;

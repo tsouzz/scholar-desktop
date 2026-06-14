@@ -19,7 +19,7 @@ public class StudentDAOImpl implements IStudentDAO {
         String sql = "INSERT INTO students (name, class_group_id) VALUES (?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, student.getName());
             stmt.setInt(2, student.getClassGroup().getId());

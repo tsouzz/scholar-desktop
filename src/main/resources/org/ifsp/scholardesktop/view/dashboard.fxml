@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.ifsp.scholardesktop.controller.DashboardController"
+        styleClass="root"
+        stylesheets="@css/styles.css"
+        prefWidth="1100"
+        prefHeight="680"
+>
+
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="12">
+            <Label text="Scholar" styleClass="topbar-brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="teacherNameLabel" styleClass="topbar-user"/>
+            <Label fx:id="teacherAvatarLabel" styleClass="topbar-avatar"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <VBox styleClass="sidebar">
+                <Label text="TURMAS" styleClass="sidebar-header"/>
+
+                <ListView
+                        fx:id="classGroupListView"
+                        styleClass="class-list-view"
+                        VBox.vgrow="ALWAYS"
+                />
+
+                <Button
+                        text="+ Nova turma"
+                        styleClass="btn-add-dashed"
+                        onAction="#handleAddClassGroup"
+                        maxWidth="Infinity"
+                >
+                    <VBox.margin><Insets top="8" bottom="12" left="14" right="14"/></VBox.margin>
+                </Button>
+            </VBox>
+
+            <VBox HBox.hgrow="ALWAYS">
+
+                <HBox VBox.vgrow="ALWAYS">
+
+                    <VBox styleClass="info-panel" spacing="0">
+                        <Label text="TURMA" styleClass="section-title"/>
+
+                        <Label text="Nome" styleClass="info-label"/>
+                        <Label fx:id="classNameLabel" styleClass="info-value"/>
+                        <VBox spacing="0"><padding><Insets top="12"/></padding></VBox>
+
+                        <Label text="Módulo" styleClass="info-label"/>
+                        <Label fx:id="classModuleLabel" styleClass="badge"/>
+                        <VBox spacing="0"><padding><Insets top="12"/></padding></VBox>
+
+                        <Label text="Professor" styleClass="info-label"/>
+                        <Label fx:id="classTeacherLabel" styleClass="info-value"/>
+                        <VBox spacing="0"><padding><Insets top="12"/></padding></VBox>
+
+                        <Label text="Alunos" styleClass="info-label"/>
+                        <Label fx:id="classStudentCountLabel" styleClass="info-value"/>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <VBox spacing="6">
+                            <Button
+                                    text="Editar turma"
+                                    styleClass="btn-ghost"
+                                    onAction="#handleEditClassGroup"
+                                    maxWidth="Infinity"
+                            />
+                            <Button
+                                    text="Excluir turma"
+                                    styleClass="btn-danger"
+                                    onAction="#handleDeleteClassGroup"
+                                    maxWidth="Infinity"
+                            />
+                        </VBox>
+                    </VBox>
+
+                    <VBox HBox.hgrow="ALWAYS" styleClass="students-panel">
+
+                        <HBox styleClass="students-header" alignment="CENTER_LEFT" spacing="8">
+                            <Label text="Alunos" styleClass="students-header-title"/>
+                            <Label fx:id="studentCountBadge" styleClass="count-badge" text="0"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button
+                                    text="Adicionar"
+                                    styleClass="btn-secondary"
+                                    onAction="#handleAddStudent"
+                            />
+                        </HBox>
+
+                        <ListView
+                                fx:id="studentListView"
+                                styleClass="student-list-view"
+                                VBox.vgrow="ALWAYS"
+                        />
+
+                    </VBox>
+
+                </HBox>
+
+                <VBox styleClass="activity-panel" spacing="0">
+                    <Label text="REGISTRAR ATIVIDADE" styleClass="activity-panel-title"/>
+
+                    <HBox spacing="12" alignment="BOTTOM_LEFT">
+
+                        <VBox spacing="4">
+                            <Label text="Aluno" styleClass="field-label"/>
+                            <ComboBox
+                                    fx:id="activityStudentCombo"
+                                    styleClass="combo-box"
+                                    promptText="Selecione o aluno"
+                                    prefWidth="200"
+                            />
+                        </VBox>
+
+                        <VBox spacing="4">
+                            <Label text="Tipo" styleClass="field-label"/>
+                            <ComboBox
+                                    fx:id="activityTypeCombo"
+                                    styleClass="combo-box"
+                                    promptText="Selecione o tipo"
+                                    prefWidth="200"
+                            />
+                        </VBox>
+
+                        <VBox spacing="4">
+                            <Label text="Nota (0 – 10)" styleClass="field-label"/>
+                            <TextField
+                                    fx:id="activityGradeField"
+                                    styleClass="text-field"
+                                    promptText="0.0"
+                                    prefWidth="90"
+                            />
+                        </VBox>
+
+                        <VBox spacing="4" alignment="BOTTOM_LEFT">
+                            <Label fx:id="activityErrorLabel" styleClass="error-label" text=""/>
+                        </VBox>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <VBox alignment="BOTTOM_RIGHT">
+                            <Button
+                                    text="Salvar"
+                                    styleClass="btn-primary"
+                                    onAction="#handleSaveActivity"
+                            />
+                        </VBox>
+
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

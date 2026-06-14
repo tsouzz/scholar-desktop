@@ -13,7 +13,7 @@ public class SchoolDAOImpl implements ISchoolDAO {
         String sql = "INSERT INTO schools (name) VALUES (?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, school.getName());
 

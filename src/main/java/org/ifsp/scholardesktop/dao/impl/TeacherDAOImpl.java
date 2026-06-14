@@ -14,7 +14,7 @@ public class TeacherDAOImpl implements ITeacherDAO {
         String sql = "INSERT INTO teachers (name, email, password_hash, school_id) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             stmt.setString(1, teacher.getName());
             stmt.setString(2, teacher.getEmail());

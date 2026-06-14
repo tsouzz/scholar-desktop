@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.ifsp.scholardesktop.controller.RegisterController"
+        styleClass="root"
+        stylesheets="@css/styles.css"
+        prefWidth="800"
+        prefHeight="580"
+>
+
+    <center>
+        <VBox
+                styleClass="login-container"
+                spacing="0"
+                alignment="CENTER"
+                BorderPane.alignment="CENTER"
+        >
+
+            <Label text="Criar conta" styleClass="login-title"/>
+
+            <Label text="ESCOLA" styleClass="field-label"/>
+            <TextField
+                    fx:id="schoolNameField"
+                    styleClass="text-field"
+                    promptText="Nome da escola"
+            />
+
+            <VBox spacing="0"><padding><Insets top="14"/></padding></VBox>
+
+            <Label text="NOME COMPLETO" styleClass="field-label"/>
+            <TextField
+                    fx:id="teacherNameField"
+                    styleClass="text-field"
+                    promptText="Seu nome completo"
+            />
+
+            <VBox spacing="0"><padding><Insets top="14"/></padding></VBox>
+
+            <Label text="E-MAIL" styleClass="field-label"/>
+            <TextField
+                    fx:id="emailField"
+                    styleClass="text-field"
+                    promptText="seu@email.com"
+            />
+
+            <VBox spacing="0"><padding><Insets top="14"/></padding></VBox>
+
+            <Label text="SENHA" styleClass="field-label"/>
+            <PasswordField
+                    fx:id="passwordField"
+                    styleClass="password-field"
+                    promptText="Mínimo 8 caracteres"
+            />
+
+            <VBox spacing="0"><padding><Insets top="14"/></padding></VBox>
+
+            <Label text="CONFIRMAR SENHA" styleClass="field-label"/>
+            <PasswordField
+                    fx:id="confirmPasswordField"
+                    styleClass="password-field"
+                    promptText="Repita a senha"
+            />
+
+            <Label
+                    fx:id="errorLabel"
+                    styleClass="error-label"
+                    text=""
+                    wrapText="true"
+                    maxWidth="296"
+            >
+                <padding><Insets top="8"/></padding>
+            </Label>
+
+            <VBox spacing="0"><padding><Insets top="24"/></padding></VBox>
+
+            <HBox spacing="8" alignment="CENTER_RIGHT">
+                <Button
+                        text="Voltar"
+                        styleClass="btn-ghost"
+                        onAction="#handleBack"
+                />
+                <Button
+                        text="Criar conta"
+                        styleClass="btn-primary"
+                        defaultButton="true"
+                        onAction="#handleRegister"
+                />
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
