@@ -6,9 +6,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 import org.ifsp.scholardesktop.dao.impl.ActivityDAOImpl;
 import org.ifsp.scholardesktop.dao.impl.ClassGroupDAOImpl;
 import org.ifsp.scholardesktop.dao.impl.StudentDAOImpl;
+import org.ifsp.scholardesktop.exception.InvalidOperationException;
 import org.ifsp.scholardesktop.model.*;
 import org.ifsp.scholardesktop.model.Module;
 import org.ifsp.scholardesktop.service.*;
@@ -51,6 +53,7 @@ public class DashboardController {
         setupClassGroupListView();
         setupStudentListView();
         setupClassGroupListener();
+        setupComboConverters();
     }
 
     public void initData(Teacher teacher) {
@@ -90,9 +93,12 @@ public class DashboardController {
                     setGraphic(null);
                 } else {
                     HBox container = new HBox();
+                    container.setMaxWidth(Double.MAX_VALUE);
+
                     Label nameLabel = new Label(item.getName());
                     nameLabel.getStyleClass().add("student-name-label");
                     HBox.setHgrow(nameLabel, Priority.ALWAYS);
+                    nameLabel.setMaxWidth(Double.MAX_VALUE);
 
                     List<Activity> activities = activityService.findByStudent(item.getId());
                     double grade = gradeService.calculateGrade(activities);
@@ -116,6 +122,32 @@ public class DashboardController {
                     if (newVal != null) loadClassGroupDetails(newVal);
                 }
         );
+    }
+
+    private void setupComboConverters() {
+        activityStudentCombo.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Student student) {
+                return student == null ? "" : student.getName();
+            }
+
+            @Override
+            public Student fromString(String string) {
+                return null;
+            }
+        });
+
+        activityTypeCombo.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(ActivityType type) {
+                return type == null ? "" : type.getLabel();
+            }
+
+            @Override
+            public ActivityType fromString(String string) {
+                return null;
+            }
+        });
     }
 
     private void loadClassGroups() {
@@ -248,6 +280,8 @@ public class DashboardController {
             activityStudentCombo.setValue(null);
             activityTypeCombo.setValue(null);
             refreshStudents();
+        } catch (InvalidOperationException e) {
+            activityErrorLabel.setText(e.getMessage());
         } catch (RuntimeException e) {
             activityErrorLabel.setText(e.getMessage());
         }
