@@ -1,0 +1,452 @@
+/* ============================================================
+   Scholar Desktop — Main Stylesheet
+   Theme: dark background / blue accent
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Root / Base
+   ------------------------------------------------------------ */
+.root {
+    -fx-background-color: #1e1f24;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* ------------------------------------------------------------
+   Top Bar
+   ------------------------------------------------------------ */
+.topbar {
+    -fx-background-color: #16171b;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 20 0 20;
+    -fx-pref-height: 48px;
+    -fx-min-height: 48px;
+}
+
+.topbar-brand {
+    -fx-text-fill: #e2e4ea;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.topbar-user {
+    -fx-text-fill: #8b8f9e;
+    -fx-font-size: 13px;
+}
+
+.topbar-avatar {
+    -fx-background-color: #1e3a5f;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #4a8feb;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 28px;
+    -fx-pref-height: 28px;
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-alignment: center;
+}
+
+/* ------------------------------------------------------------
+   Sidebar
+   ------------------------------------------------------------ */
+.sidebar {
+    -fx-background-color: #16171b;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 220px;
+    -fx-min-width: 220px;
+}
+
+.sidebar-header {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 14 8 14;
+}
+
+/* ------------------------------------------------------------
+   Class List (sidebar items)
+   ------------------------------------------------------------ */
+.class-list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.class-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #2e2f35 transparent transparent;
+    -fx-border-width: 0;
+    -fx-padding: 10 14 10 14;
+    -fx-cursor: hand;
+}
+
+.class-list-view .list-cell:hover {
+    -fx-background-color: #1e1f24;
+}
+
+.class-list-view .list-cell:selected {
+    -fx-background-color: #1a2535;
+    -fx-border-color: #4a8feb transparent transparent transparent;
+    -fx-border-width: 0 0 0 2;
+}
+
+.class-list-view .list-cell .class-name-label {
+    -fx-text-fill: #c8cad4;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.class-list-view .list-cell:selected .class-name-label {
+    -fx-text-fill: #4a8feb;
+}
+
+.class-list-view .list-cell .class-module-label {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+}
+
+/* ------------------------------------------------------------
+   Section titles
+   ------------------------------------------------------------ */
+.section-title {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 8 0;
+}
+
+/* ------------------------------------------------------------
+   Info panel (class details)
+   ------------------------------------------------------------ */
+.info-panel {
+    -fx-background-color: #16171b;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 16;
+    -fx-pref-width: 220px;
+    -fx-min-width: 220px;
+}
+
+.info-label {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+}
+
+.info-value {
+    -fx-text-fill: #c8cad4;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.badge {
+    -fx-background-color: #1a2535;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #4a8feb;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 8 3 8;
+}
+
+/* ------------------------------------------------------------
+   Students panel
+   ------------------------------------------------------------ */
+.students-panel {
+    -fx-background-color: #1e1f24;
+}
+
+.students-header {
+    -fx-background-color: #1e1f24;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12 16 12 16;
+}
+
+.students-header-title {
+    -fx-text-fill: #c8cad4;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.count-badge {
+    -fx-background-color: #4a8feb;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 7 2 7;
+}
+
+.student-list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.student-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #1e1f24 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10 16 10 16;
+    -fx-cursor: hand;
+}
+
+.student-list-view .list-cell:hover {
+    -fx-background-color: #1a1b20;
+}
+
+.student-list-view .list-cell:selected {
+    -fx-background-color: #1a2535;
+}
+
+.student-name-label {
+    -fx-text-fill: #c8cad4;
+    -fx-font-size: 13px;
+}
+
+.grade-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a8feb;
+}
+
+.grade-label-mid {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0a84e;
+}
+
+.grade-label-low {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e05a4e;
+}
+
+/* ------------------------------------------------------------
+   Activity panel
+   ------------------------------------------------------------ */
+.activity-panel {
+    -fx-background-color: #16171b;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 14 16 14 16;
+}
+
+.activity-panel-title {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 12 0;
+}
+
+/* ------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------ */
+.btn-primary {
+    -fx-background-color: #4a8feb;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 7 14 7 14;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #3a7edb;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #2a6ecb;
+}
+
+.btn-secondary {
+    -fx-background-color: #1a2535;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #4a8feb;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+}
+
+.btn-secondary:hover {
+    -fx-border-color: #4a8feb;
+}
+
+.btn-danger {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #e05a4e;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+}
+
+.btn-danger:hover {
+    -fx-border-color: #e05a4e;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+}
+
+.btn-ghost:hover {
+    -fx-text-fill: #c8cad4;
+    -fx-border-color: #5a5d6e;
+}
+
+.btn-add-dashed {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 12px;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-border-style: dashed;
+}
+
+.btn-add-dashed:hover {
+    -fx-text-fill: #4a8feb;
+    -fx-border-color: #4a8feb;
+}
+
+/* ------------------------------------------------------------
+   Form fields
+   ------------------------------------------------------------ */
+.text-field, .password-field, .combo-box {
+    -fx-background-color: #1e1f24;
+    -fx-background-radius: 6px;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #c8cad4;
+    -fx-font-size: 13px;
+    -fx-padding: 6 10 6 10;
+    -fx-pref-height: 34px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #4a8feb;
+    -fx-background-color: #1a2535;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #1e1f24;
+    -fx-text-fill: #c8cad4;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1e1f24;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #1a2535;
+}
+
+.field-label {
+    -fx-text-fill: #5a5d6e;
+    -fx-font-size: 11px;
+    -fx-padding: 0 0 4 0;
+}
+
+/* ------------------------------------------------------------
+   Login screen
+   ------------------------------------------------------------ */
+.login-container {
+    -fx-background-color: #16171b;
+    -fx-background-radius: 10px;
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 10px;
+    -fx-padding: 32 32 28 32;
+    -fx-pref-width: 360px;
+    -fx-max-width: 360px;
+}
+
+.login-title {
+    -fx-text-fill: #e2e4ea;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 24 0;
+}
+
+.link-text {
+    -fx-text-fill: #4a8feb;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.link-text:hover {
+    -fx-text-fill: #3a7edb;
+    -fx-underline: true;
+}
+
+/* ------------------------------------------------------------
+   Error / feedback labels
+   ------------------------------------------------------------ */
+.error-label {
+    -fx-text-fill: #e05a4e;
+    -fx-font-size: 12px;
+}
+
+.success-label {
+    -fx-text-fill: #4aab6e;
+    -fx-font-size: 12px;
+}
+
+/* ------------------------------------------------------------
+   Dividers / separators
+   ------------------------------------------------------------ */
+.separator .line {
+    -fx-border-color: #2e2f35;
+    -fx-border-width: 0.5;
+}
+
+/* ------------------------------------------------------------
+   Scroll bars
+   ------------------------------------------------------------ */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 6px;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #2e2f35;
+    -fx-background-radius: 3px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #5a5d6e;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+}

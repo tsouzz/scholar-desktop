@@ -1,6 +1,7 @@
 package org.ifsp.scholardesktop.service;
 
 import org.ifsp.scholardesktop.dao.interfaces.IActivityDAO;
+import org.ifsp.scholardesktop.exception.InvalidOperationException;
 import org.ifsp.scholardesktop.model.Activity;
 import org.ifsp.scholardesktop.model.ActivityType;
 import org.ifsp.scholardesktop.model.Student;
@@ -20,18 +21,25 @@ public class ActivityService {
             ActivityType type,
             double grade,
             Student student
-    ) {
-        LocalDate registrationDate = LocalDate.now();
+    ) throws InvalidOperationException {
+
+        if (grade < 0 || grade > 10) {
+            throw new InvalidOperationException("A nota deve estar entre 0 e 10.");
+        }
+
+        Activity existing = activityDAO.findByStudentAndType(student.getId(), type);
+        if (existing != null) {
+            throw new InvalidOperationException("Atividade " + type.getLabel() + " já registrada para este aluno.");
+        }
 
         Activity activity = new Activity(
                 type,
                 grade,
-                registrationDate,
+                LocalDate.now(),
                 student
         );
 
         activityDAO.insert(activity);
-
         return activity;
     }
 

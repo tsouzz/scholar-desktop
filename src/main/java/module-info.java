@@ -19,6 +19,11 @@ module org.ifsp.scholardesktop {
     opens org.ifsp.scholardesktop to javafx.fxml;
     opens org.ifsp.scholardesktop.controller to javafx.fxml;
 
+    // Opens para testes
+    opens org.ifsp.scholardesktop.service to org.mockito;
+    opens org.ifsp.scholardesktop.model to org.mockito;
+    opens org.ifsp.scholardesktop.dao to org.mockito;
+
     // Exports
     exports org.ifsp.scholardesktop;
     exports org.ifsp.scholardesktop.model;
