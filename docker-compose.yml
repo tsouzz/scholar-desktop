@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: scholar-desktop-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: english_school
+      MYSQL_USER: scholar_user
+      MYSQL_PASSWORD: scholar_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - scholar-mysql-data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  scholar-mysql-data:
