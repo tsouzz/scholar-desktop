@@ -93,7 +93,3 @@ mvn test
 ```
 
 Os testes unitários cobrem as camadas de serviço com JUnit 5 e Mockito, sem dependência de banco de dados.
-
-## Autor
-
-Thulio Souza — IFSP Campus São Paulo
