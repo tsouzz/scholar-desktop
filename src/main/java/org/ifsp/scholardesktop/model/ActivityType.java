@@ -40,6 +40,7 @@ public enum ActivityType {
     public String getLabel() {
         return label;
     }
+
     public double getWeight() {
         return weight;
     }
