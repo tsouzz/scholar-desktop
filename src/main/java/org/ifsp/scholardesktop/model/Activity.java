@@ -1,16 +1,17 @@
 package org.ifsp.scholardesktop.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Activity {
 
     private int id;
     private ActivityType activityType;
-    private double grade;
+    private BigDecimal grade;
     private LocalDate registrationDate;
     private Student student;
 
-    public Activity(int id, ActivityType activityType, double grade, LocalDate registrationDate, Student student) {
+    public Activity(int id, ActivityType activityType, BigDecimal grade, LocalDate registrationDate, Student student) {
         this.id = id;
         this.activityType = activityType;
         this.grade = grade;
@@ -18,7 +19,7 @@ public class Activity {
         this.student = student;
     }
 
-    public Activity(ActivityType activityType, double grade, LocalDate registrationDate, Student student) {
+    public Activity(ActivityType activityType, BigDecimal grade, LocalDate registrationDate, Student student) {
         this.activityType = activityType;
         this.grade = grade;
         this.registrationDate = registrationDate;
@@ -37,11 +38,11 @@ public class Activity {
         return activityType;
     }
 
-    public double getGrade() {
+    public BigDecimal getGrade() {
         return grade;
     }
 
-    public void setGrade(double grade) {
+    public void setGrade(BigDecimal grade) {
         this.grade = grade;
     }
 

@@ -21,7 +21,7 @@ public class ActivityDAOImpl implements IActivityDAO {
 
             stmt.setInt(1, activity.getStudent().getId());
             stmt.setString(2, activity.getActivityType().name());
-            stmt.setDouble(3, activity.getGrade());
+            stmt.setBigDecimal(3, activity.getGrade());
             stmt.setDate(4, Date.valueOf(activity.getRegistrationDate()));
 
 
@@ -144,7 +144,7 @@ public class ActivityDAOImpl implements IActivityDAO {
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setDouble(1, activity.getGrade());
+            stmt.setBigDecimal(1, activity.getGrade());
             stmt.setDate(2, Date.valueOf(activity.getRegistrationDate()));
             stmt.setInt(3, activity.getId());
 
@@ -200,7 +200,7 @@ public class ActivityDAOImpl implements IActivityDAO {
         Activity activity = new Activity(
                 rs.getInt("activity_id"),
                 ActivityType.valueOf(rs.getString("type")),
-                rs.getDouble("grade"),
+                rs.getBigDecimal("grade"),
                 rs.getDate("registration_date").toLocalDate(),
                 student
         );

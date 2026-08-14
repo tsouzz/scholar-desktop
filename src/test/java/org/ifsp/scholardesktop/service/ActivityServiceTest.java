@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,27 +33,27 @@ public class ActivityServiceTest {
     @Test
     void createActivityShouldThrowWhenGradeIsNegative() {
         assertThrows(InvalidOperationException.class, () ->
-                activityService.createActivity(ActivityType.AC_1, -1, student)
+                activityService.createActivity(ActivityType.AC_1, new BigDecimal(-1), student)
         );
     }
 
     @Test
     void createActivityShouldThrowWhenGradeExceedsTen() {
         assertThrows(InvalidOperationException.class, () ->
-                activityService.createActivity(ActivityType.AC_1, 11, student)
+                activityService.createActivity(ActivityType.AC_1, new BigDecimal(11), student)
         );
     }
 
     @Test
     void createActivityShouldThrowWhenActivityAlreadyExists() {
         Activity existing = new Activity(
-                ActivityType.TO_MID, 8.0, LocalDate.now(), student
+                ActivityType.TO_MID, new BigDecimal(8.0), LocalDate.now(), student
         );
         when(activityDAO.findByStudentAndType(student.getId(), ActivityType.TO_MID))
                 .thenReturn(existing);
 
         assertThrows(InvalidOperationException.class, () ->
-                activityService.createActivity(ActivityType.TO_MID, 9.0, student)
+                activityService.createActivity(ActivityType.TO_MID, new BigDecimal(9.0), student)
         );
     }
 
@@ -61,7 +62,7 @@ public class ActivityServiceTest {
         when(activityDAO.findByStudentAndType(student.getId(), ActivityType.AC_1))
                 .thenReturn(null);
 
-        Activity result = activityService.createActivity(ActivityType.AC_1, 8.0, student);
+        Activity result = activityService.createActivity(ActivityType.AC_1, new BigDecimal(8.0), student);
 
         assertNotNull(result);
         assertEquals(ActivityType.AC_1, result.getActivityType());

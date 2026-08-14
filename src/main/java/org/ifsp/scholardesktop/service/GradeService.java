@@ -2,20 +2,25 @@ package org.ifsp.scholardesktop.service;
 
 import org.ifsp.scholardesktop.model.Activity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class GradeService {
 
-    public double calculateGrade(List<Activity> activities) {
+    public BigDecimal calculateGrade(List<Activity> activities) {
         return activities.stream()
-                .mapToDouble(a -> (a.getGrade() / 10.0) * a.getActivityType().getWeight() * 100)
-                .sum();
+                .map(a -> a.getGrade()
+                        .divide(BigDecimal.TEN)
+                        .multiply(a.getActivityType().getWeight())
+                        .multiply(BigDecimal.valueOf(100)))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public double calculateMaxPossible(List<Activity> activities) {
+    public BigDecimal calculateMaxPossible(List<Activity> activities) {
         return activities.stream()
-                .mapToDouble(a -> a.getActivityType().getWeight() * 100)
-                .sum();
+                .map(a -> a.getActivityType().getWeight()
+                        .multiply(BigDecimal.valueOf(100)))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }

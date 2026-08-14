@@ -6,6 +6,7 @@ import org.ifsp.scholardesktop.model.Activity;
 import org.ifsp.scholardesktop.model.ActivityType;
 import org.ifsp.scholardesktop.model.Student;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,12 +20,12 @@ public class ActivityService {
 
     public Activity createActivity(
             ActivityType type,
-            double grade,
+            BigDecimal grade,
             Student student
     ) throws InvalidOperationException {
 
-        if (grade < 0 || grade > 10) {
-            throw new InvalidOperationException("A nota deve estar entre 0 e 10.");
+        if (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0) {
+            throw new IllegalArgumentException("A nota deve estar entre 0 e 10.");
         }
 
         Activity existing = activityDAO.findByStudentAndType(student.getId(), type);

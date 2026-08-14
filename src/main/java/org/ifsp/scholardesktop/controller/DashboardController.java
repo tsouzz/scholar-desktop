@@ -15,6 +15,7 @@ import org.ifsp.scholardesktop.model.*;
 import org.ifsp.scholardesktop.model.Module;
 import org.ifsp.scholardesktop.service.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class DashboardController {
@@ -101,12 +102,16 @@ public class DashboardController {
                     nameLabel.setMaxWidth(Double.MAX_VALUE);
 
                     List<Activity> activities = activityService.findByStudent(item.getId());
-                    double grade = gradeService.calculateGrade(activities);
+                    BigDecimal grade = gradeService.calculateGrade(activities);
                     Label gradeLabel = new Label(String.format("%.1f%%", grade));
 
-                    if (grade >= 70) gradeLabel.getStyleClass().add("grade-label");
-                    else if (grade >= 50) gradeLabel.getStyleClass().add("grade-label-mid");
-                    else gradeLabel.getStyleClass().add("grade-label-low");
+                    if (grade.compareTo(BigDecimal.valueOf(70)) >= 0) {
+                        gradeLabel.getStyleClass().add("grade-label");
+                    } else if (grade.compareTo(BigDecimal.valueOf(50)) >= 0) {
+                        gradeLabel.getStyleClass().add("grade-label-mid");
+                    } else {
+                        gradeLabel.getStyleClass().add("grade-label-low");
+                    }
 
                     container.getChildren().addAll(nameLabel, gradeLabel);
                     setGraphic(container);
@@ -261,15 +266,15 @@ public class DashboardController {
             return;
         }
 
-        double grade;
+        BigDecimal grade;
         try {
-            grade = Double.parseDouble(gradeText.replace(",", "."));
+            grade = BigDecimal.valueOf(Double.parseDouble(gradeText.replace(",", ".")));
         } catch (NumberFormatException e) {
             activityErrorLabel.setText("Nota inválida.");
             return;
         }
 
-        if (grade < 0 || grade > 10) {
+        if (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0) {
             activityErrorLabel.setText("A nota deve estar entre 0 e 10.");
             return;
         }

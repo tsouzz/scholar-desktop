@@ -6,11 +6,13 @@ import org.ifsp.scholardesktop.model.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class GradeServiceTest {
 
@@ -24,13 +26,19 @@ public class GradeServiceTest {
     }
 
     private Activity activity(ActivityType type, double grade) {
-        return new Activity(type, grade, LocalDate.now(), mockStudent);
+        return new Activity(type, BigDecimal.valueOf(grade), LocalDate.now(), mockStudent);
+    }
+
+    private void assertBigDecimalEquals(double expected, BigDecimal actual) {
+        assertNotNull(actual, "O resultado não deveria ser nulo");
+        assertEquals(0, BigDecimal.valueOf(expected).compareTo(actual),
+                () -> "Valor esperado era " + expected + " mas o resultado foi " + actual);
     }
 
     @Test
     void calculateShouldReturnZero() {
-        double result = gradeService.calculateGrade(Collections.emptyList());
-        assertEquals(0.0, result);
+        BigDecimal result = gradeService.calculateGrade(Collections.emptyList());
+        assertBigDecimalEquals(0.0, result);
     }
 
     @Test
@@ -60,8 +68,8 @@ public class GradeServiceTest {
                 activity(ActivityType.TE_FINAL,  10)
         );
 
-        double result = gradeService.calculateGrade(activities);
-        assertEquals(100.0, result, 0.01);
+        BigDecimal result = gradeService.calculateGrade(activities);
+        assertBigDecimalEquals(100.0, result);
     }
 
     @Test
@@ -70,14 +78,14 @@ public class GradeServiceTest {
                 activity(ActivityType.TO_MID, 10)
         );
 
-        double result = gradeService.calculateGrade(activities);
-        assertEquals(10.0, result, 0.01);
+        BigDecimal result = gradeService.calculateGrade(activities);
+        assertBigDecimalEquals(10.0, result);
     }
 
     @Test
     void calculateMaxShouldReturnZero(){
-        double result = gradeService.calculateGrade(Collections.emptyList());
-        assertEquals(0.0, result);
+        BigDecimal result = gradeService.calculateMaxPossible(Collections.emptyList());
+        assertBigDecimalEquals(0.0, result);
     }
 
     @Test
@@ -107,8 +115,8 @@ public class GradeServiceTest {
                 activity(ActivityType.TE_FINAL,  0)
         );
 
-        double result = gradeService.calculateMaxPossible(activities);
-        assertEquals(100.0, result, 0.01);
+        BigDecimal result = gradeService.calculateMaxPossible(activities);
+        assertBigDecimalEquals(100.0, result);
     }
 
     @Test
@@ -118,7 +126,7 @@ public class GradeServiceTest {
                 activity(ActivityType.TE_FINAL, 0)
         );
 
-        double result = gradeService.calculateMaxPossible(activities);
-        assertEquals(40.0, result, 0.01);
+        BigDecimal result = gradeService.calculateMaxPossible(activities);
+        assertBigDecimalEquals(40.0, result);
     }
 }
